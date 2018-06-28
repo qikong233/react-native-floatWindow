@@ -249,7 +249,7 @@ export default class extends PureComponent {
       <Animated.View style={[styles.container, animStyle, transformStyle]}>
         <NavigationBar title='Suspend' leftBtnClick={this.back} />
         <View style={{ marginTop: 64, flex: 1 }}>
-          <View style={{ backgroundColor: 'skyblue', flex: 1 }} />
+          {this.props.children}
         </View>
         {this.renderFloatBtn()}
       </Animated.View>
