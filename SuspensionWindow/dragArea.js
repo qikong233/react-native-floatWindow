@@ -17,7 +17,7 @@ const InAreaBigger = 15
 
 export default class extends PureComponent {
   static defaultProps = {
-    getArea: () => {},
+    getArea: () => { },
   }
 
   animaValue = new Animated.ValueXY({ x: AreaWH * 0.5, y: AreaWH * 0.5 })
@@ -26,12 +26,12 @@ export default class extends PureComponent {
   inArea = () => {
     Animated.parallel([
       Animated.timing(this.animaValue, {
-        toValue: {x: -InAreaBigger, y: -InAreaBigger},
+        toValue: { x: -InAreaBigger, y: -InAreaBigger },
         duration: 20,
         easing: Easing.linear
       }),
       Animated.timing(this.subAnimaValue, {
-        toValue: {x: InAreaBigger, y: InAreaBigger},
+        toValue: { x: InAreaBigger, y: InAreaBigger },
         duration: 20,
         easing: Easing.linear
       })
@@ -41,12 +41,12 @@ export default class extends PureComponent {
   outArea = () => {
     Animated.parallel([
       Animated.timing(this.animaValue, {
-        toValue: {x: 0, y: 0},
+        toValue: { x: 0, y: 0 },
         duration: 50,
         easing: Easing.linear
       }),
       Animated.timing(this.subAnimaValue, {
-        toValue: {x: 0, y: 0},
+        toValue: { x: 0, y: 0 },
         duration: 50,
         easing: Easing.linear
       })
@@ -56,15 +56,17 @@ export default class extends PureComponent {
   show = () => {
     Animated.timing(this.animaValue, {
       toValue: { x: 0, y: 0 },
-      duration: 200
+      duration: 200,
+      easing: Easing.linear
     }).start()
   }
 
-  hide = () => {
+  hide = (close) => {
     Animated.timing(this.animaValue, {
       toValue: { x: AreaWH * 0.5, y: AreaWH * 0.5 },
-      duration: 200
-    }).start()
+      duration: 200,
+      easing: Easing.linear
+    }).start(() => close && close())
   }
 
   componentDidMount = () => {
@@ -72,7 +74,7 @@ export default class extends PureComponent {
     this.props.getArea && this.props.getArea({ top: AreaTop, left: AreaLeft })
   }
 
-  render () {
+  render() {
     transformAnima = {
       transform: this.animaValue.getTranslateTransform()
     }
@@ -90,17 +92,17 @@ export default class extends PureComponent {
       >
         <Animated.View
           style={[{
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center',
             width: AreaWH * 0.5,
             height: AreaWH * 0.5
           }, subTransformAnima]}
         >
           <Image
-            style={{ width: 40, height: 40, marginBottom: 15, marginTop: 10 }}
+            style={{ width: 30, height: 30, marginTop: AreaWH * 0.15, marginBottom: 15 }}
             source={require('../images/minus-cycle-o.png')}
           />
-          <Text style={{ color: 'white' }}>Cancle Floating</Text>
+          <Text style={{ color: 'white', fontSize: 12, marginRight: 5 }}>Cancle Floating</Text>
         </Animated.View>
       </Animated.View>
     )
