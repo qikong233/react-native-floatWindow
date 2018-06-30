@@ -1,6 +1,11 @@
 # react-native-floatWindow
 纯RN仿微信悬浮窗口
 
+## Run this project
+- `npm install`
+
+- `react-native run-ios` OR `react-native run-android`
+
 ## USAGE
 ### step 1
 `npm install react-native-root-siblings`
