@@ -12,7 +12,7 @@
 ### step 2
 drag SuspensionWindow floder to your own floder
 ### step 3
-```
+```js
 import React, { Component } from 'react'
 import {
   StyleSheet,
